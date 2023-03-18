@@ -1,35 +1,34 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
-MAINTAINER Lilia Sfaxi <liliasfaxi@gmail.com>
 
 WORKDIR /root
 
 # install openssh-server, openjdk and wget
-RUN apt-get update && apt-get install -y openssh-server openjdk-8-jdk wget vim
+RUN apt-get update && apt-get install -y openssh-server openjdk-11-jdk wget vim
 
-# install hadoop 2.7.2
-RUN wget https://github.com/kiwenlau/compile-hadoop/releases/download/2.7.2/hadoop-2.7.2.tar.gz && \
-    tar -xzvf hadoop-2.7.2.tar.gz && \
-    mv hadoop-2.7.2 /usr/local/hadoop && \
-    rm hadoop-2.7.2.tar.gz
+# install hadoop 3.3.4
+RUN wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz && \
+    tar -xzvf hadoop-3.3.4.tar.gz && \
+    mv hadoop-3.3.4 /usr/local/hadoop && \
+    rm hadoop-3.3.4.tar.gz
 
-# install spark
-RUN wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz && \
-    tar -xvf spark-2.2.0-bin-hadoop2.7.tgz && \
-    mv spark-2.2.0-bin-hadoop2.7 /usr/local/spark && \
-    rm spark-2.2.0-bin-hadoop2.7.tgz
+# install spark 3.3.2
+RUN wget https://dlcdn.apache.org/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz && \
+    tar -xvf spark-3.3.2-bin-hadoop3.tgz && \
+    mv spark-3.3.2-bin-hadoop3 /usr/local/spark && \
+    rm spark-3.3.2-bin-hadoop3.tgz
 
-# install kafka
-RUN wget https://archive.apache.org/dist/kafka/1.0.2/kafka_2.11-1.0.2.tgz && \
-    tar -xzvf kafka_2.11-1.0.2.tgz && \
-    mv kafka_2.11-1.0.2 /usr/local/kafka && \
-    rm kafka_2.11-1.0.2.tgz
+# install kafka 3.3.2
+RUN wget https://downloads.apache.org/kafka/3.3.2/kafka-3.3.2-src.tgz && \
+    tar -xzvf kafka-3.3.2-src.tgz && \
+    mv kafka-3.3.2-src /usr/local/kafka && \
+    rm kafka-3.3.2-src.tgz
 
 # install hbase
-RUN wget https://archive.apache.org/dist/hbase/1.4.9/hbase-1.4.9-bin.tar.gz  && \ 
-    tar -zxvf hbase-1.4.9-bin.tar.gz && \
-    mv hbase-1.4.9 /usr/local/hbase && \
-    rm hbase-1.4.9-bin.tar.gz
+RUN wget https://dlcdn.apache.org/hbase/2.4.16/hbase-2.4.16-src.tar.gz  && \ 
+    tar -zxvf hbase-2.4.16-src..tar.gz && \
+    mv hbase-2.4.16 /usr/local/hbase && \
+    rm hbase-2.4.16-src.tar.gz
 
 # copy the test files
 RUN wget https://mohetn-my.sharepoint.com/:t:/g/personal/lilia_sfaxi_insat_u-carthage_tn/EWdosZTuyDtEiqcjpqbY_loBlfQbIQWp8Zq7PPKSAE1sjQ?e=O3TNLR && \ 
@@ -37,7 +36,7 @@ RUN wget https://mohetn-my.sharepoint.com/:t:/g/personal/lilia_sfaxi_insat_u-car
 
 
 # set environment variables
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 
 ENV HADOOP_HOME=/usr/local/hadoop 
 ENV SPARK_HOME=/usr/local/spark
 ENV KAFKA_HOME=/usr/local/kafka
