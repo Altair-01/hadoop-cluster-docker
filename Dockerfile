@@ -26,7 +26,7 @@ RUN wget https://downloads.apache.org/kafka/3.3.2/kafka-3.3.2-src.tgz && \
 
 # install hbase
 RUN wget https://dlcdn.apache.org/hbase/2.4.16/hbase-2.4.16-src.tar.gz  && \ 
-    tar -zxvf hbase-2.4.16-src..tar.gz && \
+    tar -zxvf hbase-2.4.16-src.tar.gz && \
     mv hbase-2.4.16 /usr/local/hbase && \
     rm hbase-2.4.16-src.tar.gz
 
@@ -36,7 +36,7 @@ RUN wget https://mohetn-my.sharepoint.com/:t:/g/personal/lilia_sfaxi_insat_u-car
 
 
 # set environment variables
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV HADOOP_HOME=/usr/local/hadoop 
 ENV SPARK_HOME=/usr/local/spark
 ENV KAFKA_HOME=/usr/local/kafka
